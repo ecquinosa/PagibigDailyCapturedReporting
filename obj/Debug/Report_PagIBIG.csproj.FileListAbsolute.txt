@@ -1,0 +1,8 @@
+I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\obj\Debug\Report_PagIBIG.csproj.CoreCompileInputs.cache
+I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\obj\Debug\Report_PagIBIG.csprojAssemblyReference.cache
+I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\bin\Debug\Report_PagIBIG.exe.config
+I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\bin\Debug\Report_PagIBIG.exe
+I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\bin\Debug\Report_PagIBIG.pdb
+I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\obj\Debug\Report_PagIBIG.csproj.CopyComplete
+I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\obj\Debug\Report_PagIBIG.exe
+I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\obj\Debug\Report_PagIBIG.pdb

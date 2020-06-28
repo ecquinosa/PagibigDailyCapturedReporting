@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report_PagIBIG", "Report_PagIBIG.csproj", "{87AA8A65-9661-4F2A-9F18-BE4372CCEB01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87AA8A65-9661-4F2A-9F18-BE4372CCEB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87AA8A65-9661-4F2A-9F18-BE4372CCEB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87AA8A65-9661-4F2A-9F18-BE4372CCEB01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87AA8A65-9661-4F2A-9F18-BE4372CCEB01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F7AE186-0858-47E0-B4E2-7B547510B5B5}
+	EndGlobalSection
+EndGlobal

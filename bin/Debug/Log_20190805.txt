@@ -1,0 +1,10 @@
+08/05/2019 06:29:38 PM Start of process
+08/05/2019 06:29:47 PM Failed to generate report. Runtime error Object reference not set to an instance of an object.
+08/05/2019 06:29:47 PM End of process
+08/05/2019 06:30:45 PM Start of process
+08/05/2019 06:31:22 PM Start of process
+08/05/2019 06:31:31 PM Report successfully sent
+08/05/2019 06:31:31 PM End of process
+08/05/2019 06:35:09 PM Start of process
+08/05/2019 06:35:14 PM Report successfully sent
+08/05/2019 06:35:14 PM End of process
