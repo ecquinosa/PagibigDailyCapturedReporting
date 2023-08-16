@@ -12,7 +12,7 @@ namespace Report_PagIBIG.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,8 +26,7 @@ namespace Report_PagIBIG.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=10.88.77.71;Initial Catalog=LCDB_01;User ID=allcard;Password=Marlboro" +
-            "Lights#")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=10.88.77.71;Initial Catalog=LCDB_01;User ID=allcard;Password=Test")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
@@ -36,7 +35,7 @@ namespace Report_PagIBIG.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("smtp.allcard.com.ph")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mail.allcard.com.ph")]
         public string SMTP_HOST {
             get {
                 return ((string)(this["SMTP_HOST"]));
@@ -72,7 +71,7 @@ namespace Report_PagIBIG.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("support@allcardtech.com.ph")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ecquinosa@allcardtech.com.ph")]
         public string SMTP_USER {
             get {
                 return ((string)(this["SMTP_USER"]));
@@ -84,7 +83,7 @@ namespace Report_PagIBIG.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Allcard*")]
+        [global::System.Configuration.DefaultSettingValueAttribute("password")]
         public string SMTP_PASS {
             get {
                 return ((string)(this["SMTP_PASS"]));
@@ -96,7 +95,7 @@ namespace Report_PagIBIG.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("edel_171@yahoo.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ecquinosa@allcardtech.com.ph")]
         public string SMTP_RECIPIENT {
             get {
                 return ((string)(this["SMTP_RECIPIENT"]));

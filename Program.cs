@@ -11,8 +11,10 @@ namespace Report_PagIBIG
     {
         static void Main(string[] args)
         {
+            CreateReport.WriteToLog("Application started");
             CreateReport createReport = new CreateReport();
             createReport.GenerateReportv2();
+            CreateReport.WriteToLog("Application closed");
         }
       
     }

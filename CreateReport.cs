@@ -27,8 +27,12 @@ namespace Report_PagIBIG
         {
             DataTable dt = new DataTable();
 
-            //dt = GetDatatable("ReportPagIBIGv2", CommandType.StoredProcedure);
-            dt = GetDatatable("ReportPagIBIGv3", CommandType.StoredProcedure);
+            dt = GetDatatable("ReportPagIBIGv2", CommandType.StoredProcedure);
+
+            //dt = GetDatatable("ReportPagIBIGv3", CommandType.StoredProcedure);
+
+            //for testing only
+            //dt = GetDatatable("ReportPagIBIGv4", CommandType.StoredProcedure);
             return dt;
         }
 
@@ -151,9 +155,9 @@ namespace Report_PagIBIG
 
                 xlPck.Save();
 
-                SendMail sendMail = new SendMail();
-                string errMsg = "";
-                sendMail.SendNotification("[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]", "TEST", newFile.FullName, ref errMsg);
+                //SendMail sendMail = new SendMail();
+                //string errMsg = "";
+                //sendMail.SendNotification("[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]", "TEST", newFile.FullName, ref errMsg);
             }
         }
 
@@ -161,7 +165,7 @@ namespace Report_PagIBIG
         {
             try
             {
-                WriteToLog("Start of process");
+                WriteToLog("GenerateReportv2: Start of process");
 
                 DataTable GRDatatable = new DataTable();
                 int totalTrans = 0;
@@ -183,9 +187,11 @@ namespace Report_PagIBIG
                     try
                     {
                         System.IO.File.Move(source, dest);
+                        WriteToLog(string.Format("File {0} is moved", source));
                     }
                     catch (IOException e)
                     {
+                        WriteToLog("Check if file is open. Runtime error " + e.Message);
                         Console.Write("Check if file is open");
                         return;
                     }
@@ -193,145 +199,154 @@ namespace Report_PagIBIG
 
                 GRDatatable = GetReportv2();
 
-                FileInfo newFile = new FileInfo(System.IO.Path.Combine(Application.StartupPath, "DailyReport\\" + filename));
-                using (ExcelPackage xlPck = new ExcelPackage(newFile))
+                if (GRDatatable != null)
                 {
-                    ExcelWorksheet ws = xlPck.Workbook.Worksheets.Add(DateTime.Now.ToString("yyyyMMddHHmmss"));
 
-                    DataTable unq = new DataTable();
-                    unq = GRDatatable.DefaultView.ToTable(true, "Branch");
-
-                    ExcelRange rng = ws.Cells["A1:F1"];
-                    //rng.Merge = true;
-                    //rng.Style.WrapText = true;                
-                    //rng.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                    //rng.Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
-                    //rng.Value = "RELEASED CARDS ";
-                    rng.Style.Font.Size = 14;
-                    rng.Style.Font.Bold = true;
-                    rng.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                    rng.Style.Fill.BackgroundColor.SetColor(Color.Black);
-                    //rng.Style.Font.Color.SetColor(Color.White);
-                    //rng.AutoFitColumns();      
-
-                    ws.Column(1).Width = 40;
-                    ws.Column(2).Width = 15;
-                    ws.Column(3).Width = 15;
-                    ws.Column(4).Width = 15;
-                    ws.Column(5).Width = 15;
-                    ws.Column(6).Width = 15;
-
-                    int intRow = 2;
-                    foreach (DataRow rw in unq.Rows)
+                    FileInfo newFile = new FileInfo(System.IO.Path.Combine(Application.StartupPath, "DailyReport\\" + filename));
+                    using (ExcelPackage xlPck = new ExcelPackage(newFile))
                     {
-                        //int _r = 0;
-                        decimal a = 0;
-                        string rowval = rw[0].ToString();
-                        if (rowval == "")
+                        ExcelWorksheet ws = xlPck.Workbook.Worksheets.Add(DateTime.Now.ToString("yyyyMMddHHmmss"));
+
+                        DataTable unq = new DataTable();
+                        unq = GRDatatable.DefaultView.ToTable(true, "Branch");
+
+                        ExcelRange rng = ws.Cells["A1:F1"];
+                        //rng.Merge = true;
+                        //rng.Style.WrapText = true;                
+                        //rng.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        //rng.Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                        //rng.Value = "RELEASED CARDS ";
+                        rng.Style.Font.Size = 14;
+                        rng.Style.Font.Bold = true;
+                        rng.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        rng.Style.Fill.BackgroundColor.SetColor(Color.Black);
+                        //rng.Style.Font.Color.SetColor(Color.White);
+                        //rng.AutoFitColumns();      
+
+                        ws.Column(1).Width = 40;
+                        ws.Column(2).Width = 15;
+                        ws.Column(3).Width = 15;
+                        ws.Column(4).Width = 15;
+                        ws.Column(5).Width = 15;
+                        ws.Column(6).Width = 15;
+
+                        int intRow = 2;
+                        foreach (DataRow rw in unq.Rows)
                         {
-                            break;
-                        }
+                            //int _r = 0;
+                            decimal a = 0;
+                            string rowval = rw[0].ToString();
+                            if (rowval == "")
+                            {
+                                break;
+                            }
 
-                        DataView LoadFilter = new DataView(GRDatatable);
-                        string filterExp = "Branch ='" + rw[0].ToString() + "'";
-                        LoadFilter.RowFilter = filterExp;
+                            DataView LoadFilter = new DataView(GRDatatable);
+                            string filterExp = "Branch ='" + rw[0].ToString() + "'";
+                            LoadFilter.RowFilter = filterExp;
 
-                        DataTable LF = new DataTable();
-                        LF = LoadFilter.ToTable();
+                            DataTable LF = new DataTable();
+                            LF = LoadFilter.ToTable();
 
-                        //string cond = "Branch="+rw[0].ToString();
-                        //totalTrans = Convert.ToInt32(GRDatatable.Compute("Sum(CardCount)", filterExp));                    
+                            //string cond = "Branch="+rw[0].ToString();
+                            //totalTrans = Convert.ToInt32(GRDatatable.Compute("Sum(CardCount)", filterExp));                    
 
-                        //headers
-                        PopulateCell(ref ws, "PAG-IBIG BRANCH", 1, 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        PopulateCell(ref ws, "DATE", 1, 2, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        PopulateCell(ref ws, "DELIVERED", 1, 3, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        PopulateCell(ref ws, "ISSUED", 1, 4, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        PopulateCell(ref ws, "SPOILED", 1, 5, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        PopulateCell(ref ws, "BALANCE", 1, 6, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        rng.Style.Font.Color.SetColor(Color.White);
+                            //headers
+                            PopulateCell(ref ws, "PAG-IBIG BRANCH", 1, 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            PopulateCell(ref ws, "DATE", 1, 2, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            PopulateCell(ref ws, "DELIVERED", 1, 3, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            PopulateCell(ref ws, "ISSUED", 1, 4, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            PopulateCell(ref ws, "SPOILED", 1, 5, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            PopulateCell(ref ws, "BALANCE", 1, 6, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            rng.Style.Font.Color.SetColor(Color.White);
 
-                        int intCol = 0;
-                        int intSumDeliveredCards = 0;
-                        int intSumIssuedCards = 0;
-                        int intSumSpoiledCards = 0;
+                            int intCol = 0;
+                            int intSumDeliveredCards = 0;
+                            int intSumIssuedCards = 0;
+                            int intSumSpoiledCards = 0;
 
-                        foreach (DataRow rwLF in LF.Rows)
-                        {
+                            foreach (DataRow rwLF in LF.Rows)
+                            {
+                                intCol = 0;
+
+                                PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Left, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
+                                intCol += 1;
+                                PopulateCell(ref ws, Convert.ToDateTime(rwLF[intCol]).ToString("MM/dd/yyyy"), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
+                                intCol += 1;
+                                PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
+                                intSumDeliveredCards += (int)rwLF[intCol];
+                                ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
+                                intCol += 1;
+                                PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
+                                intSumIssuedCards += (int)rwLF[intCol];
+                                ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
+                                intCol += 1;
+                                PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
+                                intSumSpoiledCards += (int)rwLF[intCol];
+                                ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
+                                intCol += 1;
+                                PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
+                                ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
+
+                                intRow += 1;
+                            }
+
                             intCol = 0;
+                            PopulateCell(ref ws, "", intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Left, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
+                            intCol += 1;
+                            PopulateCell(ref ws, "TOTAL", intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            ws.Cells[intRow, intCol + 1].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+                            intCol += 1;
+                            PopulateCell(ref ws, intSumDeliveredCards.ToString("N0"), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
+                            ws.Cells[intRow, intCol + 1].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+                            intCol += 1;
+                            PopulateCell(ref ws, intSumIssuedCards.ToString("N0"), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
+                            ws.Cells[intRow, intCol + 1].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+                            intCol += 1;
+                            PopulateCell(ref ws, intSumSpoiledCards.ToString("N0"), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
+                            ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
+                            ws.Cells[intRow, intCol + 1].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
 
-                            PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Left, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
-                            intCol += 1;
-                            PopulateCell(ref ws, Convert.ToDateTime(rwLF[intCol]).ToString("MM/dd/yyyy"), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
-                            intCol += 1;
-                            PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
-                            intSumDeliveredCards += (int)rwLF[intCol];
-                            ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
-                            intCol += 1;
-                            PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
-                            intSumIssuedCards += (int)rwLF[intCol];
-                            ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
-                            intCol += 1;
-                            PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
-                            intSumSpoiledCards += (int)rwLF[intCol];
-                            ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
-                            intCol += 1;
-                            PopulateCell(ref ws, rwLF[intCol].ToString(), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
-                            ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
+                            intRow += 1;
 
+                            InsertEmpRowsv2(ref ws, intRow, intCol + 1);
                             intRow += 1;
                         }
 
-                        intCol = 0;
-                        PopulateCell(ref ws, "", intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Left, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, false);
-                        intCol += 1;
-                        PopulateCell(ref ws, "TOTAL", intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Center, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        ws.Cells[intRow, intCol + 1].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
-                        intCol += 1;
-                        PopulateCell(ref ws, intSumDeliveredCards.ToString("N0"), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
-                        ws.Cells[intRow, intCol + 1].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
-                        intCol += 1;
-                        PopulateCell(ref ws, intSumIssuedCards.ToString("N0"), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
-                        ws.Cells[intRow, intCol + 1].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
-                        intCol += 1;
-                        PopulateCell(ref ws, intSumSpoiledCards.ToString("N0"), intRow, intCol + 1, OfficeOpenXml.Style.ExcelHorizontalAlignment.Right, OfficeOpenXml.Style.ExcelVerticalAlignment.Top, 10, true);
-                        ws.Cells[intRow, intCol + 1].Style.Numberformat.Format = "#,##0";
-                        ws.Cells[intRow, intCol + 1].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+                        xlPck.Save();
 
-                        intRow += 1;
-
-                        InsertEmpRowsv2(ref ws, intRow, intCol + 1);
-                        intRow += 1;
-                    }
-
-                    xlPck.Save();
-
-                    SendMail sendMail = new SendMail();
-                    string errMsg = "";
-                    if (sendMail.SendNotification("[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]", "TEST", newFile.FullName, ref errMsg))
-                    {
-                        WriteToLog("Report successfully sent");
-                    }
-                    else
-                    {
-                        WriteToLog("Failed to send report. Error " + errMsg);
+                        SendMail sendMail = new SendMail();
+                        //string errMsg = "";
+                        //if (sendMail.SendNotification("[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]", "TEST", newFile.FullName, ref errMsg))
+                        //{
+                        //    WriteToLog("Report successfully sent");
+                        //}
+                        //else
+                        //{
+                        //    WriteToLog("Failed to send report. Error " + errMsg);
+                        //}
+                        sendMail.Send("[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]", Properties.Settings.Default.BANK.Trim() + " x ALLCARD - REPORT " + DateTime.Now.ToString("MM/dd/yyyy"), newFile.FullName);
                     }
                 }
+                else WriteToLog("GRDatatable is empty");
             }
             catch (Exception ex)
             {
                 WriteToLog("Failed to generate report. Runtime error " + ex.Message);
             }
             finally {
-                WriteToLog("End of process");
+                WriteToLog("GenerateReportv2: End of process");
             }
         }
 
-        private void WriteToLog(string data)
+        public static void WriteToLog(string data)
         {
-            using (StreamWriter sr = new StreamWriter("Log_" + DateTime.Now.ToString("yyyyMMdd") + ".txt", true))
+            var logFolder = string.Format(@"{0}\Logs", Application.StartupPath);
+            if (!Directory.Exists(logFolder)) Directory.CreateDirectory(logFolder);
+
+            using (StreamWriter sr = new StreamWriter(string.Format(@"{0}\Log_{1}.txt", logFolder, DateTime.Now.ToString("yyyyMMdd")), true))
             {
                 sr.WriteLine(DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt ") + data);
                 sr.Dispose();

@@ -6,3 +6,32 @@ I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\bin\Debug\Report_PagIBIG.pdb
 I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\obj\Debug\Report_PagIBIG.csproj.CopyComplete
 I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\obj\Debug\Report_PagIBIG.exe
 I:\EDEL QUINOSA\PAGIBIGREPORTS\Report_PagIBIG\obj\Debug\Report_PagIBIG.pdb
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\obj\Debug\Report_PagIBIG.csproj.AssemblyReference.cache
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\obj\Debug\Report_PagIBIG.csproj.CoreCompileInputs.cache
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\obj\Debug\Report_PagIBIG.exe
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\obj\Debug\Report_PagIBIG.pdb
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\Report_PagIBIG.exe.config
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\Report_PagIBIG.exe
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\Report_PagIBIG.pdb
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\Allcard.Smtp.Mailkit.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\MimeKit.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\MailKit.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Memory.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\BouncyCastle.Crypto.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Buffers.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Numerics.Vectors.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\Allcard.Smtp.Mailkit.pdb
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\Allcard.Smtp.Mailkit.dll.config
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\MimeKit.pdb
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\MimeKit.xml
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\MailKit.pdb
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\MailKit.xml
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Memory.xml
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\BouncyCastle.Crypto.xml
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Buffers.xml
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Numerics.Vectors.xml
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\WORK\Projects\PagibigDailyCapturedReporting\Report_PagIBIG\obj\Debug\Report_PagIBIG.csproj.CopyComplete

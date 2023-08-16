@@ -5,13 +5,13 @@
     <Setting Name="ConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=10.88.77.71;Initial Catalog=LCDB_01;User ID=allcard;Password=MarlboroLights#&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=10.88.77.71;Initial Catalog=LCDB_01;User ID=allcard;Password=Test&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=10.88.77.71;Initial Catalog=LCDB_01;User ID=allcard;Password=MarlboroLights#</Value>
+      <Value Profile="(Default)">Data Source=10.88.77.71;Initial Catalog=LCDB_01;User ID=allcard;Password=Test</Value>
     </Setting>
     <Setting Name="SMTP_HOST" Type="System.String" Scope="User">
-      <Value Profile="(Default)">smtp.allcard.com.ph</Value>
+      <Value Profile="(Default)">mail.allcard.com.ph</Value>
     </Setting>
     <Setting Name="SMTP_PORT" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">587</Value>
@@ -20,13 +20,13 @@
       <Value Profile="(Default)">10000</Value>
     </Setting>
     <Setting Name="SMTP_USER" Type="System.String" Scope="User">
-      <Value Profile="(Default)">support@allcardtech.com.ph</Value>
+      <Value Profile="(Default)">ecquinosa@allcardtech.com.ph</Value>
     </Setting>
     <Setting Name="SMTP_PASS" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Allcard*</Value>
+      <Value Profile="(Default)">password</Value>
     </Setting>
     <Setting Name="SMTP_RECIPIENT" Type="System.String" Scope="User">
-      <Value Profile="(Default)">edel_171@yahoo.com</Value>
+      <Value Profile="(Default)">ecquinosa@allcardtech.com.ph</Value>
     </Setting>
     <Setting Name="BANK" Type="System.String" Scope="User">
       <Value Profile="(Default)">AUB</Value>

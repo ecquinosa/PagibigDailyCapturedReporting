@@ -1,0 +1,24 @@
+08/15/2023 06:15:54 PM Start of process
+08/15/2023 06:33:40 PM Start of process
+08/15/2023 06:41:02 PM Start of process
+08/15/2023 06:47:20 PM Start of process
+08/15/2023 06:48:35 PM Start sending of email
+08/15/2023 06:48:41 PM Allcard.Smtp.Mailkit: Send process start...
+var message...
+bodyBuilder...
+ProcessAttachments start:  06:48:38
+Attaching DCS_REPORT_20230815.xlsx...
+ProcessAttachments end:  06:48:38
+bodyBuilder.HtmlBody...
+connecting...
+SmtpClient start:  06:48:38
+SslProtocols start:  06:48:38
+Connect start:  06:48:38
+Authenticate start:  06:48:39
+Send start:  06:48:39
+Disconnect start:  06:48:41
+SmtpClient end:  06:48:41
+Housekeeping......
+
+08/15/2023 06:48:41 PM Email report sent to ecquinosa@allcardtech.com.ph
+08/15/2023 06:48:45 PM End of process
